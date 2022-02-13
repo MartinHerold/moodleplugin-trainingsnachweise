@@ -1,0 +1,30 @@
+{{=<% %>=}}
+<div>
+<h1>Trainingsnachweise abzeichnen</h1>
+<core-course-module-description description="<% intro %>" component="mod_hittrainingsnachweis" componentId="<% cmid %>"></core-course-module-description>
+<ion-list>
+    <ion-list-header>
+        <p class="item-heading">Es werden <b><%wiederholungen%> Wiederholungen</b> benötigt</p>
+    </ion-list-header>
+    <%#entries%>
+        <ion-item>
+            <ion-label>
+                <p><%username%></p>
+            </ion-label>
+            <ion-label  slot="end">
+                <p><%cnt_entries%></p>
+            </ion-label>
+            <ion-label>
+                 <button ion-button block color="light" core-site-plugins-new-content title="Abzeichnen"
+                     component="mod_hittrainingsnachweis"
+                     method="mobile_trainingsnachweis_viewstudententries"
+                     [args]="{cmid: <% cmid %>, courseid: <% courseid %>, studentid: <%id%>}">
+                     Ansehen
+                 </button>
+             </ion-label>
+        </ion-item>
+    <%/entries%>
+</ion-list>
+</div>
+
+

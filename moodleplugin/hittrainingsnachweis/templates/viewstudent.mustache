@@ -1,0 +1,62 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template mod_hittrainingsnachweis/view
+
+
+    Example context (json):
+    {
+
+    }
+}}
+<h1>Meine Trainingsnachweise</h1>
+{{{intro}}}
+<input type="button" class="btn btn-primary" value="Neuen Eintrag anlegen" onclick="location.href='{{new_url}}'">
+<br>
+<h3>Bisherige Wiederholungen ( {{training_wiederholt}} von {{training_wiederholungen}})</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Datum</th>
+            <th>Bild</th>
+            <th>Beschreibung</th>
+            <th>Abgezeichnet</th>
+            <th>Bewertung</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#entries}}
+        <tr>
+            <td>{{training_dttm}}</td>
+            <td>
+                <a href="{{image}}" target="_blank">
+                    <img src="{{image}}"
+                         max-height="100px"
+                         width="100px"
+                    >
+                </a>
+            </td>
+            <td>{{beschreibung}}</td>
+            <td>{{abgezeichnet}}</td>
+            <td>{{bewertung}}</td>
+        </tr>
+        {{/entries}}
+    </tbody>
+</table>
+
+

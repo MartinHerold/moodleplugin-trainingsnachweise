@@ -1,0 +1,36 @@
+{{=<% %>=}}
+
+<h1>Trainingsnachweise von <%studentname%></h1>
+
+<div>
+    <ion-list>
+            <ion-list-header>
+                <p class="item-heading">Bisherige Wiederholungen ( <%training_wiederholt%> von <%training_wiederholungen%>)</p>
+                <a href="<% cmurl %>" core-link capture="false" inApp="false">im Browser öffnen</a>
+            </ion-list-header>
+
+
+            <%#entries%>
+                <ion-item>
+                    <ion-label slot="start">
+                        <img src="<%image%>" max-height="100px" width="100px" core-external-content component="mod_hittrainingsnachweis" componentId="<% image.id %>">
+
+                        <div><%training_dttm%> <%beschreibung%></div>
+                        <div><b>Abgz.:</b> <%abgezeichnet%></div>
+                        <div><b>Bew.:</b> <%bewertung%></div>
+                    </ion-label>
+                    <ion-label slot="end">
+                         <button ion-button block color="light" core-site-plugins-new-content title="Abzeichnen"
+                              component="mod_hittrainingsnachweis"
+                              method="mobile_trainingsnachweis_viewstudententries_abzeichnen"
+                              [args]="{cmid: <% cmid %>, courseid: <% courseid %>, studentid: <%studentid%>, id: <%id%>}">
+                              Bewerten & Abzeichnen
+                         </button>
+                    </ion-label>
+
+                </ion-item>
+            <%/entries%>
+
+    </ion-list>
+
+</div>

@@ -1,0 +1,49 @@
+version: '2'
+services:
+  mariadb_dev:
+    image: 'docker.io/bitnami/mariadb:10.5'
+    container_name: moodle_mariadb_dev
+    hostname: mariadb_dev
+    restart: always
+    ports:
+      - '32532:3306'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=no
+      - MARIADB_ROOT_PASSWORD=changeme
+      - MARIADB_USER=bn_moodle1
+      - MARIADB_PASSWORD=changeme1
+      - MARIADB_DATABASE=moodle_dev
+    volumes:
+      - 'D:\Workspaces\VisualStudioCodeProjects\hittrainingsnachweise\moodleinstallation\mariadbdata:/bitnami/mariadb'
+  moodle_dev:
+    image: 'docker.io/bitnami/moodle:3.11.5'
+    container_name: moodle_web_dev
+    restart: always
+    ports:
+      - '32430:8080'
+      - '32431:8443'
+    environment:
+      - BITNAMI_DEBUG=true
+      - MOODLE_DATABASE_HOST=mariadb_dev
+      - MOODLE_DATABASE_PORT_NUMBER=3306
+      - MOODLE_DATABASE_USER=bn_moodle1
+      - MOODLE_DATABASE_PASSWORD=changeme1
+      - MOODLE_DATABASE_NAME=moodle_dev
+      - ALLOW_EMPTY_PASSWORD=no
+      - MOODLE_USERNAME=devadmin
+      - MOODLE_PASSWORD=devadmin
+      - MOODLE_EMAIL=admin@example.de
+      - MOODLE_SITE_NAME=MoodleDEV
+      - MOODLE_SMTP_HOST=mail.example.de
+      - MOODLE_SMTP_PORT=587
+      - MOODLE_SMTP_USER=user
+      - MOODLE_SMTP_PASSWORD=password
+      - MOODLE_SMTP_PROTOCOL=tls
+      - PHP_MEMORY_LIMIT=512M
+    volumes:
+      - 'D:\Workspaces\VisualStudioCodeProjects\hittrainingsnachweise\moodleinstallation\moodle:/bitnami/moodle'
+      #- 'D:\Workspaces\VisualStudioCodeProjects\hittrainingsnachweise\moodleplugin:/bitnami/moodle/mod/hittrainingsnachweise'
+      - 'D:\Workspaces\VisualStudioCodeProjects\hittrainingsnachweise\moodleinstallation\moodledata:/bitnami/moodledata'
+      # - 'D:\Workspaces\VisualStudioCodeProjects\hittrainingsnachweise\moodleinstallation\httpd.conf:/opt/bitnami/apache/conf/httpd.conf'
+    depends_on:
+      - mariadb_dev

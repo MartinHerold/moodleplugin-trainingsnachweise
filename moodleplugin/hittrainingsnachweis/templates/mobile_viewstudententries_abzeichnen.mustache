@@ -1,0 +1,85 @@
+{{=<% %>=}}
+<h1>Trainingsnachweis von <%studentname%></h1>
+<img src="<%image%>" core-external-content component="mod_hittrainingsnachweis" componentId="<% image.id %>">
+
+<div><%training_dttm%> <%beschreibung%></div>
+<div><b>Abgezeichnet:</b> <%abgezeichnet%></div>
+<div><b>Bewertung:</b> <%bewertung%></div>
+
+<hr>
+<!--
+<ion-radio-group [(ngModel)]="CONTENT_OTHERDATA.bewertung">
+    <ion-list-header>
+      <ion-label>Bewertung neu setzen</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>nicht bewertet</ion-label>
+      <ion-radio slot="start" value="0"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>sehr gut</ion-label>
+      <ion-radio slot="start" value="1"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>gut</ion-label>
+      <ion-radio slot="start" value="2"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>neutral</ion-label>
+      <ion-radio slot="start" value="3"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>schelcht</ion-label>
+      <ion-radio slot="start" value="4"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>sehr schlecht</ion-label>
+      <ion-radio slot="start" value="5"></ion-radio>
+    </ion-item>
+  </ion-radio-group>-->
+
+    <ion-list-header>
+      <ion-label>Bewertung neu setzen</ion-label>
+    </ion-list-header>
+   <div>
+    0 -> nicht bewertet<br>
+    1 -> sehr gut<br>
+    2 -> gut<br>
+    3 -> neutral<br>
+    4 -> schlecht<br>
+    5 -> sehr schlecht <br>
+   </div>
+  <ion-item>
+    <ion-label id="image" color="primary" stacked>Bewertung eingeben</ion-label>
+    <ion-input [(ngModel)]="CONTENT_OTHERDATA.bewertung" type="number" value="<%bewertung%>" min="0" max="5"></ion-input>
+  </ion-item>
+
+  <button ion-button core-site-plugins-call-ws name="mobile_trainingsnachweis_abzeichnen"
+        [params]="{hittrainingsnachweisid: <%hittrainingsnachweisid%>, studentid: <%studentid%>, entryid: <%id%>, bewertung: CONTENT_OTHERDATA.bewertung, abgezeichnet: true}"
+        [preSets]="{getFromCache: 0, saveToCache: 0}"
+        component="mod_hittrainingsnachweis"
+        goBackOnSuccess ="true"
+        method="mobile_trainingsnachweis_abzeichnen"
+        [args]="{cmid: <% cmid %>, courseid: <% courseid %>}"
+        >
+        Abzeichnen
+  </button>
+
+  <button ion-button core-site-plugins-call-ws name="mobile_trainingsnachweis_abzeichnen"
+        [params]="{hittrainingsnachweisid: <%hittrainingsnachweisid%>, studentid: <%studentid%>, entryid: <%id%>, bewertung: 0, abgezeichnet: false}"
+        [preSets]="{getFromCache: 0, saveToCache: 0}"
+        component="mod_hittrainingsnachweis"
+        goBackOnSuccess ="true"
+        method="mobile_trainingsnachweis_abzeichnen"
+        [args]="{cmid: <% cmid %>, courseid: <% courseid %>}"
+        >
+        Bewertung entfernen
+  </button>
+<br><br>
+<small>Wenn die Daten nicht aktuell sind bitte nach unten zeihen um aktualisieren</small>

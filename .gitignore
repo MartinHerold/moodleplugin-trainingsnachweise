@@ -1,0 +1,4 @@
+moodleinstallation/moodle/*
+moodleinstallation/moodledata/*
+moodleinstallation/mariadbdata/*
+scripts/copylog.txt

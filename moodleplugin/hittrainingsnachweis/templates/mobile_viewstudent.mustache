@@ -1,0 +1,37 @@
+{{=<% %>=}}
+<div>
+    <h1>Meine Trainingsnachweise</h1>
+    <core-course-module-description description="<% intro %>" component="mod_hittrainingsnachweis" componentId="<% cmid %>"></core-course-module-description>
+     <ion-list>
+            <ion-list-header>
+                <p class="item-heading">Bisherige Wiederholungen ( <%training_wiederholt%> von <%training_wiederholungen%>)</p>
+            </ion-list-header>
+
+            <ion-item>
+                <button
+                    ion-button block color="light" core-site-plugins-new-content title="Neuen Eintrag anlegen"
+                    component="mod_hittrainingsnachweis" method="mobile_trainingsnachweis_new" [args]="{cmid: <% cmid %>, courseid: <% courseid %>}">
+                    Neuen Eintrag anlegen
+                </button>
+            </ion-item>
+            
+            <%#entries%>
+                <ion-item>
+                    <img src="<%image%>" max-height="100px" width="100px" core-external-content component="mod_hittrainingsnachweis" componentId="<% image.id %>">
+                    <div style="font-size: 12px"><%training_dttm%> <!--<%beschreibung%>--></div>
+                    <div><b>Abgezeichnet:</b> <%abgezeichnet%></div>
+                    <div><b>Bewertung:</b> <%bewertung%></div>
+                </ion-item>
+            <%/entries%>
+
+    </ion-list>
+    <ion-item>
+        <a href="<% cmurl %>" core-link capture="false" inApp="false">im Browser öffnen</a>
+    </ion-item>
+
+
+
+</div>
+
+
+

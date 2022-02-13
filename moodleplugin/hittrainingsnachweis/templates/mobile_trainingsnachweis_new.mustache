@@ -1,0 +1,51 @@
+{{=<% %>=}}
+<div>
+    <!-- Textarea in an item with a floating label -->
+    <ion-item>
+      <ion-label position="floating">Beschreibung</ion-label>
+      <ion-textarea [(ngModel)]="CONTENT_OTHERDATA.beschreibung" id="beschreibung" name="beschreibung"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Datum</ion-label>
+      <ion-datetime [(ngModel)]="CONTENT_OTHERDATA.datum" displayFormat="D MMM YYYY H:mm" min="2021" max="2030" value="" required="true"></ion-datetime>
+    </ion-item>
+
+
+    <core-attachments
+        (ionChange)="onFileChange()"
+        [files]="attachments"
+        [maxSubmissions]="1"
+        [maxSize]="20970000"
+        [componentId]="<%cmid%>"
+        acceptedTypes="image">
+    </core-attachments>
+
+<!--
+    <ion-item>
+        <button ion-button core-site-plugins-call-ws name="mobile_new_trainingsnachweis" (click)="save(<% courseid%>, <% courseid%>)"
+            [params]="{hittrainingsnachweisid: <%hittrainingsnachweisid%>, studentid: <%studentid%>, beschreibung: CONTENT_OTHERDATA.beschreibung, timestamp: CONTENT_OTHERDATA.datum, file: CONTENT_OTHERDATA.file}"
+            [preSets]="{getFromCache: 0, saveToCache: 0}"
+            component="mod_hittrainingsnachweis"
+            goBackOnSuccess ="true"
+            method="mobile_new_trainingsnachweis"
+            [args]="{cmid: <% cmid %>, courseid: <% courseid %>}"
+            >
+            Anlegen
+        </button>
+    </ion-item>
+-->
+
+    <ion-item>
+        <button ion-button (click)="save(<% courseid%>)">
+            Anlegen
+        </button>
+    </ion-item>
+
+    <ion-item>
+        <a href="<% cmurl %>" core-link capture="false" inApp="false" autoLogin="yes">im Browser öffnen</a>
+    </ion-item>
+
+
+
+</div>
